@@ -1,1 +1,46 @@
-123
+#include <iostream>	//for I/O routines
+#include <cassert>	//for assert
+using namespace std;
+int main() 			// multiply two numbers
+{
+	void doACalculation();
+	bool wantToContinue();
+	do 
+		doACalculation();
+	while (wantToContinue());
+	cout << "\n\n";
+	//system("pause");	//to hold the output screen
+	return 0;
+}
+void	doACalculation() {
+	void multiply(int, int, int&);
+	int number1, number2;
+	cout << "\nPlease enter number1: ";
+	cin >> number1;
+	cout << "Please enter number2: ";
+	cin >> number2;
+  int product;
+  multiply(number1, number2, product);
+	cout << "The product is: " << product;
+}
+bool wantToContinue() {
+	cout << "\n\nDo you want to continue(y/n)? ";
+	char answer;
+	cin >> answer;
+	return tolower(answer) == 'y';
+}
+void multiply(int num1, int num2, int& prod)
+{
+//use: num1, num2
+//produce: prod
+//pre-condition: (true) 
+//multiply two numbers and return product
+	assert(true); //precondition
+	if (num1 < 0) {
+		num1 = -num1;
+		num2 = -num2;
+	}
+	prod = 0;
+	for (int time(1); time <= num1; ++time)
+		prod = prod + num2;
+}
