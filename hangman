@@ -1,91 +1,416 @@
 //Maodan-2018/9/27
+
+
+
 #include<iostream>
+
+
+
 #include<string>
+
+
+
 using namespace std;
 
+
+
+　
+
+
+bool WantToContinue();
+
+
+
+void GuessWord(string &, string &, int &);
+
+
+
+　
+
+
 int main()
+
+
+
 {
-	bool WantToContinue();
-	void GuessWord(string &SecretWord, string &ShowWord, int &CurLife);
+
+
+
+　
+
+
 	int CurLife = 6;//if life=0, game over
+
+
+
 	string SecretWord;
+
+
+
 	string ShowWord;
+
+
+
 	cout << "Please come up with a secret word" << endl;
+
+
+
 	cin >> SecretWord;
 
+
+
+　
+
+
 	//first print_ _ _ _ _
+
+
+
 	ShowWord = SecretWord;
+
+
+
 	for (int i = 0; i < ShowWord.length(); i++)
+
+
+
 	{
+
+
+
 		ShowWord[i] = '_';
-		cout << " "<<ShowWord[i]<<" " ;
+
+
+
+		cout << " " << ShowWord[i] << " ";
+
+
+
 	}
-	
-	if (CurLife > 0) 
+
+
+
+　
+
+
+　
+
+
+	if (CurLife > 0)
+
+
+
 	{
+
+
+
 		do
+
+
+
 			GuessWord(SecretWord, ShowWord, CurLife);
-		while (CurLife > 0&&WantToContinue());
+
+
+
+		while (CurLife > 0 && WantToContinue() && SecretWord!=ShowWord);
+
+
+
 	}
-	
-	
+
+
+	//if every letter is right-> break 
+
+
+
+	if (CurLife > 0 && SecretWord == ShowWord)
+
+
+	{
+
+
+		cout << "you win the game!" << endl;
+
+
+	}
+
+
+	else if (CurLife <= 0 && SecretWord != ShowWord)
+
+
+	{
+
+
+		cout << "you lose the game!" << endl;
+
+
+	}
+
+
+
 	//Do you want to play again?
+
+
+
 	//
+
+
+
 	//if showword==secretword,you win
 
+
+
+　
+
+
 	system("pause");
+
+
+
 	return 0;
+
+
+
 }
 
-void GuessWord(string &SecretWord,string &ShowWord,int &CurLife)
+
+
+　
+
+
+　
+
+
+　
+
+
+void GuessWord(string &SecretWord, string &ShowWord, int &CurLife)
+
+
+
 {
-	cout << '\n' << "Please guess a letter" << endl;
+
+
+
+	cout << "\nPlease guess a letter" << endl;
+
+
+
 	//string RightGuessedWord=ShowWord;
+
+
+
 	char GuessLetter;
+
+
+
 	cin >> GuessLetter;
 
+
+
+　
+
+
+　
+
+
+　
+
+
 	for (int i = 0; i < SecretWord.length(); i++)
+
+
+
 	{
+
+
+
 		if (SecretWord[i] == GuessLetter)
+
+
+
 		{
+
+
+
 			ShowWord[i] = GuessLetter;
+
+
+
 		}
+
+
+
 	}
+
+
+
+　
+
+
+　
+
+
+　
+
 
 	string::size_type idx = SecretWord.find(GuessLetter);
+
+
+
 	if (idx != string::npos)
+
+
+
 	{
+
+
+
 		cout << "You guess a right letter" << endl;
+
+
+
 	}
+
+
+
 	else
+
+
+
 	{
+
+
+
 		cout << "You guess a wrong letter" << endl;
+
+
+
 		CurLife = CurLife - 1;
+
+
+
 	}
+
+
+
+　
+
+
+　
+
+
+　
+
 
 	//print ShowWorld
+
+
+
 	for (int i = 0; i < ShowWord.length(); i++)
+
+
+
 	{
+
+
+
 		cout << " " << ShowWord[i] << " ";
+
+
+
 	}
+
+
+
 }
 
+
+
+　
+
+
+　
+
+
+　
+
+
 bool WantToContinue()
+
+
+
 {
+
+
+
 	char YOrN;
-	cout << '\n' << "Do you want to continue(Y/N)?" << endl;
+
+
+
+	cout <<  "\nDo you want to continue(Y/N)?" << endl;
+
+
+
 	cin >> YOrN;
 
+
+
+　
+
+
+　
+
+
+　
+
+
 	if (YOrN == 'Y' || YOrN == 'y')
+
+
+
 	{
+
+
+
 		return true;
+
+
+
 	}
+
+
+
 	else if (YOrN == 'N' || YOrN == 'n')
+
+
+
 	{
+
+
+
 		return false;
+
+
+
 	}
+
+
+
 	else
+
+
+
 	{
+
+
+
 		cout << "The character you entered is wrong." << endl;
+
+
+
 	}
+
+
+
 }
